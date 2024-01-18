@@ -1,3 +1,5 @@
+using CommandLine;
+
 namespace ET.Client
 {
     public static class LoginHelper
@@ -7,9 +9,14 @@ namespace ET.Client
             root.RemoveComponent<ClientSenderCompnent>();
             ClientSenderCompnent clientSenderCompnent = root.AddComponent<ClientSenderCompnent>();
 
-            long playerId = await clientSenderCompnent.LoginAsync(account, password);
+            NetClient2Main_Login response = await clientSenderCompnent.LoginAsync(account, password);
 
-            root.GetComponent<PlayerComponent>().MyId = playerId;
+            if (response.Error!=ErrorCode.ERR_Success)
+            {
+                Log.Error($"response.Error: {response.Error}"); 
+                return;
+            }
+            root.GetComponent<PlayerComponent>().MyId = response.PlayerId;
             
             await EventSystem.Instance.PublishAsync(root, new LoginFinish());
         }
