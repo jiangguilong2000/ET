@@ -7,7 +7,6 @@ namespace ET
     public struct EntryEvent1
     {
     }   
-    
     public struct EntryEvent2
     {
     } 
@@ -18,16 +17,16 @@ namespace ET
     
     public static class Entry
     {
-        public static void Init()
-        {
-            
-        }
-        
         public static void Start()
         {
             StartAsync().Coroutine();
         }
-        
+
+        public static void Init()
+        {
+            
+        }
+
         private static async ETTask StartAsync()
         {
             WinPeriod.Init();

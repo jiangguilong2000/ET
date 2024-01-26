@@ -22,6 +22,7 @@ namespace ET
 
         private MainThreadScheduler mainThreadScheduler;
         
+       //看不懂
         public void Awake()
         {
             this.mainThreadScheduler = new MainThreadScheduler(this);
