@@ -34,6 +34,6 @@
     }
     public struct TestEventStruct 
     {
-        public int testValue;
+        public int TestValue;
     }
 }
