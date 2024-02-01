@@ -74,6 +74,7 @@ namespace ET
         [DebuggerHidden]
         public void Coroutine()
         {
+          
             InnerCoroutine().Coroutine();
         }
 

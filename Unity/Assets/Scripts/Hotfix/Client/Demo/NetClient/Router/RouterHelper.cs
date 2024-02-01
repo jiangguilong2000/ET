@@ -17,7 +17,7 @@ namespace ET.Client
             }
             
             Log.Info($"get router: {recvLocalConn} {routerAddress}");
-
+//router连接可以重用
             Session routerSession = netComponent.Create(routerAddress, address, recvLocalConn);
             routerSession.AddComponent<PingComponent>();
             routerSession.AddComponent<RouterCheckComponent>();

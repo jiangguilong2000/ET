@@ -7,8 +7,20 @@ namespace ET.Client
 	{
 		protected override async ETTask Run(Scene root, AppStartInitFinish args)
 		{
-			await UIHelper.Create(root, UIType.UILogin, UILayer.Mid);
+			Phone phone=root.GetComponent<PhoneComponent>().AddChild<Phone>();
+			phone.AddComponent<DisplayComponent>();
+			phone.Open();
+		
 			
+		//	phone.Open();
+		
+			// phone.Open();
+			// phone.Open();
+		// phone.	
+			
+			await UIHelper.Create(root, UIType.UILogin, UILayer.Mid);
 		}
+
+		
 	}
 }

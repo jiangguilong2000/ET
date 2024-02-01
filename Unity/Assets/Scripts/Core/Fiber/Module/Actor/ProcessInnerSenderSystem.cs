@@ -159,7 +159,6 @@ namespace ET
             Type requestType = iRequest.GetType();
             MessageSenderStruct messageSenderStruct = new(actorId, requestType, needException);
             self.requestCallback.Add(rpcId, messageSenderStruct);
-            
             self.SendInner(actorId, (MessageObject)iRequest);
 
             

@@ -6,7 +6,7 @@ using System.Net;
 namespace ET.Server
 {
     [MessageSessionHandler(SceneType.Realm)]
-    [FriendOfAttribute(typeof(ET.Server.AccountInfo))]
+    [FriendOf(typeof(AccountInfo))]
     public class C2R_LoginHandler : MessageSessionHandler<C2R_Login, R2C_Login>
     {
         protected override async ETTask Run(Session session, C2R_Login request, R2C_Login response)

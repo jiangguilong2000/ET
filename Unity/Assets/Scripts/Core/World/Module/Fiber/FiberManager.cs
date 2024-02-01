@@ -22,12 +22,12 @@ namespace ET
 
         private MainThreadScheduler mainThreadScheduler;
         
-       //看不懂
+       //看不懂，为什么mainThreadScheduler赋值给this.schedulers[(int)SchedulerType.ThreadPool]
         public void Awake()
         {
             this.mainThreadScheduler = new MainThreadScheduler(this);
             this.schedulers[(int)SchedulerType.Main] = this.mainThreadScheduler;
-            
+            //看不懂
 #if ENABLE_VIEW && UNITY_EDITOR
             this.schedulers[(int)SchedulerType.Thread] = this.mainThreadScheduler;
             this.schedulers[(int)SchedulerType.ThreadPool] = this.mainThreadScheduler;

@@ -59,7 +59,7 @@ namespace ET
 
                 try
                 {
-                    //看不懂
+                    //看不懂,请解释下代码
                     List<object> iUpdateSystems = EntitySystemSingleton.Instance.TypeSystems.GetSystems(component.GetType(), typeof (IUpdateSystem));
                     if (iUpdateSystems == null)
                     {

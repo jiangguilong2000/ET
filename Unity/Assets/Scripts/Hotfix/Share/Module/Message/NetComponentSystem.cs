@@ -103,6 +103,7 @@ namespace ET
             {
                 session.AddComponent<SessionIdleCheckerComponent>();
             }
+            //看不懂，为什么跑到了kservice里去了，而不是TService里去
             self.AService.Create(session.Id, routerIPEndPoint);
             return session;
         }
