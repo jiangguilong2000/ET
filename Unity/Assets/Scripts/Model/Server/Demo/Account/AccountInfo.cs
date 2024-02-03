@@ -4,9 +4,19 @@
 public class AccountInfo:Entity,IAwake
 {
   
-    public string Account;
-    public string Password;
-   
+    private string _account;
+    private string _password;
 
+    public string Account
+    {
+        get { return _account; }
+        set { _account = value; }
+    }
+
+    public string Password
+    {
+        get { return _password; }
+        set { _password = value; }
+    }
     
 }

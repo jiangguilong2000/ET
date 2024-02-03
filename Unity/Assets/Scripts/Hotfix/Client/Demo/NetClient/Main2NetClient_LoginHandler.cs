@@ -19,7 +19,7 @@ namespace ET.Client
             //获取router的地址和realm的地址
             await routerAddressComponent.Init();
             //看不懂，为什么是UDP
-            //创建和router的连接
+            //创建和router的连接,KCP里包含TCP,和UDP,WS模式
             root.AddComponent<NetComponent, AddressFamily, NetworkProtocol>(routerAddressComponent.RouterManagerIPAddress.AddressFamily, NetworkProtocol.UDP);
             root.GetComponent<FiberParentComponent>().ParentFiberId = request.OwnerFiberId;
 
