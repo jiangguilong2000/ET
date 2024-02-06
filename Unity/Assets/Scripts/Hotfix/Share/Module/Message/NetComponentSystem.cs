@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace ET
 {
@@ -10,7 +11,9 @@ namespace ET
         [EntitySystem]
         private static void Awake(this NetComponent self, IPEndPoint address, NetworkProtocol protocol)
         {
+           
             self.AService = new KService(address, protocol, ServiceType.Outer);
+            Log.Console($" { self.Scene().SceneType}, {address}, {protocol}, {ServiceType.Outer}");
             self.AService.AcceptCallback = self.OnAccept;
             self.AService.ReadCallback = self.OnRead;
             self.AService.ErrorCallback = self.OnError;
@@ -65,6 +68,7 @@ namespace ET
         
         private static void OnRead(this NetComponent self, long channelId, MemoryBuffer memoryBuffer)
         {
+       
             Session session = self.GetChild<Session>(channelId);
             if (session == null)
             {
@@ -75,7 +79,6 @@ namespace ET
             (ActorId _, object message) = MessageSerializeHelper.ToMessage(self.AService, memoryBuffer);
             
             LogMsg.Instance.Debug(self.Fiber(), message);
-            
             EventSystem.Instance.Invoke((long)self.IScene.SceneType, new NetComponentOnRead() {Session = session, Message = message});
         }
         

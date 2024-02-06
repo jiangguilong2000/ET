@@ -41,7 +41,7 @@ namespace ET.Client
             }) as NetClient2Main_Login;
             return response;
         }
-
+//异步发送消息*/
         public static void Send(this ClientSenderCompnent self, IMessage message)
         {
             A2NetClient_Message a2NetClientMessage = A2NetClient_Message.Create();
@@ -49,6 +49,7 @@ namespace ET.Client
             self.Root().GetComponent<ProcessInnerSender>().Send(self.netClientActorId, a2NetClientMessage);
         }
 
+        /**同步请求*/
         public static async ETTask<IResponse> Call(this ClientSenderCompnent self, IRequest request, bool needException = true)
         {
             A2NetClient_Request a2NetClientRequest = A2NetClient_Request.Create();

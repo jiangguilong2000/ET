@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace ET.Client
 {
@@ -19,14 +20,14 @@ namespace ET.Client
             //获取router的地址和realm的地址
             await routerAddressComponent.Init();
             //看不懂，为什么是UDP
-            //创建和router的连接,KCP里包含TCP,和UDP,WS模式
+            //创建和router的连接,KCP里包含TCP,和UDP,
             root.AddComponent<NetComponent, AddressFamily, NetworkProtocol>(routerAddressComponent.RouterManagerIPAddress.AddressFamily, NetworkProtocol.UDP);
             root.GetComponent<FiberParentComponent>().ParentFiberId = request.OwnerFiberId;
 
             NetComponent netComponent = root.GetComponent<NetComponent>();
             
             IPEndPoint realmAddress = routerAddressComponent.GetRealmAddress(account);
-
+       
             R2C_Login r2CLogin;
             // 创建一个router Session,包括连接，并且保存到SessionComponent中
             using (Session session = await netComponent.CreateRouterSession(realmAddress, account, password))

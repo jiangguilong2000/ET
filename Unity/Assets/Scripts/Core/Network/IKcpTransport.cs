@@ -38,6 +38,7 @@ namespace ET
             try
             {
                 this.socket.Bind(ipEndPoint);
+               
             }
             catch (Exception e)
             {

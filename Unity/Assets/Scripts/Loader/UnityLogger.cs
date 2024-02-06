@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace ET
 {
@@ -6,27 +7,34 @@ namespace ET
     {
         public void Trace(string msg)
         {
-            UnityEngine.Debug.Log(msg);
+            int id=	Thread.CurrentThread.ManagedThreadId;
+            string message = $"[{id}] {msg}";
+            UnityEngine.Debug.Log(message);
         }
 
         public void Debug(string msg)
         {
-            UnityEngine.Debug.Log(msg);
+            int id=	Thread.CurrentThread.ManagedThreadId;
+            string message = $"[{id}] {msg}";
+            UnityEngine.Debug.Log(message);
         }
 
         public void Info(string msg)
-        {
-            UnityEngine.Debug.Log(msg);
+        {  int id=	Thread.CurrentThread.ManagedThreadId;
+            string message = $"[{id}] {msg}";
+            UnityEngine.Debug.Log(message);
         }
 
         public void Warning(string msg)
-        {
-            UnityEngine.Debug.LogWarning(msg);
+        { int id=	Thread.CurrentThread.ManagedThreadId;
+            string message = $"[{id}] {msg}";
+            UnityEngine.Debug.LogWarning(message);
         }
 
         public void Error(string msg)
-        {
-            UnityEngine.Debug.LogError(msg);
+        {int id=	Thread.CurrentThread.ManagedThreadId;
+            string message = $"[{id}] {msg}";
+            UnityEngine.Debug.LogError(message);
         }
 
         public void Error(Exception e)
@@ -36,26 +44,36 @@ namespace ET
 
         public void Trace(string message, params object[] args)
         {
+            int id=	Thread.CurrentThread.ManagedThreadId;
+            message = $"[{id}] {message}";
             UnityEngine.Debug.LogFormat(message, args);
         }
 
         public void Warning(string message, params object[] args)
         {
+            int id=	Thread.CurrentThread.ManagedThreadId;
+            message = $"[{id}] {message}";
             UnityEngine.Debug.LogWarningFormat(message, args);
         }
 
         public void Info(string message, params object[] args)
         {
+            int id=	Thread.CurrentThread.ManagedThreadId;
+            message = $"[{id}] {message}";
             UnityEngine.Debug.LogFormat(message, args);
         }
 
         public void Debug(string message, params object[] args)
         {
+            int id=	Thread.CurrentThread.ManagedThreadId;
+             message = $"[{id}] {message}";
             UnityEngine.Debug.LogFormat(message, args);
         }
 
         public void Error(string message, params object[] args)
         {
+            int id=	Thread.CurrentThread.ManagedThreadId;
+            message = $"[{id}] {message}";
             UnityEngine.Debug.LogErrorFormat(message, args);
         }
     }

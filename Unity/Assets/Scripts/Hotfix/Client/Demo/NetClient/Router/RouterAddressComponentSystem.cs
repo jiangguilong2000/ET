@@ -14,6 +14,7 @@ namespace ET.Client
         {
             self.RouterManagerHost = address;
             self.RouterManagerPort = port;
+            Log.Console($"RouterManager, {self.RouterManagerHost}:{self.RouterManagerPort}");
         }
         
         public static async ETTask Init(this RouterAddressComponent self)
@@ -25,12 +26,12 @@ namespace ET.Client
         private static async ETTask GetAllRouter(this RouterAddressComponent self)
         {
             string url = $"http://{self.RouterManagerHost}:{self.RouterManagerPort}/get_router?v={RandomGenerator.RandUInt32()}";
-            Log.Debug($"start get router info: {url}");
+            Log.Console($"start get router info: {url}");
             string routerInfo = await HttpClientHelper.Get(url);
-            Log.Debug($"recv router info: {routerInfo}");
+            Log.Console($"recv router info: {routerInfo}");
             HttpGetRouterResponse httpGetRouterResponse = MongoHelper.FromJson<HttpGetRouterResponse>(routerInfo);
             self.Info = httpGetRouterResponse;
-            Log.Debug($"start get router info finish: {MongoHelper.ToJson(httpGetRouterResponse)}");
+            Log.Console($"start get router info finish: {MongoHelper.ToJson(httpGetRouterResponse)}");
             
             // 打乱顺序
             RandomGenerator.BreakRank(self.Info.Routers);

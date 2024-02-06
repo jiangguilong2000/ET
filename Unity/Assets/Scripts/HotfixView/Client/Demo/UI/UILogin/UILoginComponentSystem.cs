@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Threading;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET.Client
@@ -20,6 +21,7 @@ namespace ET.Client
 		
 		public static void OnLogin(this UILoginComponent self)
 		{
+			Log.Debug($"OnLogin");
 			LoginHelper.Login(
 				self.Root(), 
 				self.account.GetComponent<InputField>().text, 

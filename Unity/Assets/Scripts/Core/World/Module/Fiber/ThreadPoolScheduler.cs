@@ -22,6 +22,7 @@ namespace ET
             {
                 Thread thread = new(this.Loop);
                 this.threads.Add(thread);
+                Log.Debug($"ThreadPoolScheduler threadId:{thread.ManagedThreadId}");
                 thread.Start();
             }
         }

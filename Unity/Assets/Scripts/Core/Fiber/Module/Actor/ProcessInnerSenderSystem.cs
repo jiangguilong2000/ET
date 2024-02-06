@@ -45,7 +45,6 @@ namespace ET
 
             ActorId actorId = messageInfo.ActorId;
             MessageObject message = messageInfo.MessageObject;
-
             MailBoxComponent mailBoxComponent = self.Fiber().Mailboxes.Get(actorId.InstanceId);
             if (mailBoxComponent == null)
             {

@@ -10,6 +10,8 @@
             Fiber fiber = self.Fiber();
             self.MailBoxType = mailBoxType;
             self.ParentInstanceId = self.Parent.InstanceId;
+            //看不懂，这里表示一个fiber,MailBoxComponent可以很多个？
+        
             fiber.Mailboxes.Add(self);
         }
         
@@ -27,13 +29,6 @@
         }
     }
 
-    public struct MailBoxInvoker
-    {
-        public Address FromAddress;
-        public MessageObject MessageObject;
-        public MailBoxComponent MailBoxComponent;
-    }
-    
     /// <summary>
     /// 挂上这个组件表示该Entity是一个Actor,接收的消息将会队列处理
     /// </summary>
@@ -43,5 +38,12 @@
         public long ParentInstanceId { get; set; }
         // Mailbox的类型
         public MailBoxType MailBoxType { get; set; }
+    }
+
+    public struct MailBoxInvoker
+    {
+        public Address FromAddress;
+        public MessageObject MessageObject;
+        public MailBoxComponent MailBoxComponent;
     }
 }
