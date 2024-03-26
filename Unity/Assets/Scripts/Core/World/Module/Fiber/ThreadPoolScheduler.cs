@@ -20,9 +20,12 @@ namespace ET
             this.threads = new List<Thread>(threadCount);
             for (int i = 0; i < threadCount; ++i)
             {
-                Thread thread = new(this.Loop);
+                Thread thread = new Thread(this.Loop)
+                {
+                    Name = $"ThreadPool-{i + 1}"
+                };
                 this.threads.Add(thread);
-                Log.Debug($"ThreadPoolScheduler threadId:{thread.ManagedThreadId}");
+                Log.Debug($"ThreadPoolScheduler threadName:{ thread.Name}");
                 thread.Start();
             }
         }

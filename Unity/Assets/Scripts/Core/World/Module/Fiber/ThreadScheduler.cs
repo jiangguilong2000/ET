@@ -60,7 +60,10 @@ namespace ET
 
         public void Add(int fiberId)
         {
-            Thread thread = new(() => this.Loop(fiberId));
+            Thread thread = new(() => this.Loop(fiberId))
+            {
+                Name = $"Fiber-{fiberId}"
+            };
             this.dictionary.TryAdd(fiberId, thread);
             thread.Start();
         }

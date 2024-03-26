@@ -15,6 +15,9 @@ namespace ET
         {
             SynchronizationContext.SetSynchronizationContext(this.threadSynchronizationContext);
             this.fiberManager = fiberManager;
+            Thread mainThread =Thread.CurrentThread;
+            mainThread.Name??= "Main";
+            
         }
 
         public void Dispose()
