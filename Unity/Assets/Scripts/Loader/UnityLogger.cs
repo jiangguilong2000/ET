@@ -8,7 +8,7 @@ namespace ET
         public void Trace(string msg)
         {
             string name = Thread.CurrentThread.Name;
-            string message = $"TRACE [{name}]{msg}";
+            string message = $"TRACE [{name}] - {msg}";
             UnityEngine.Debug.Log(message);
         }
 
@@ -16,28 +16,28 @@ namespace ET
         {
             // int id=	Thread.CurrentThread.ManagedThreadId;
             string name = Thread.CurrentThread.Name;
-            string message = $"DEBUG [{name}]{msg}";
+            string message = $"DEBUG [{name}] - {msg}";
             UnityEngine.Debug.Log(message);
         }
 
         public void Info(string msg)
         {
             string name = Thread.CurrentThread.Name;
-            string message = $"INFO [{name}]{msg}";
+            string message = $"INFO [{name}] - {msg}";
             UnityEngine.Debug.Log(message);
         }
 
         public void Warning(string msg)
         {
             string name = Thread.CurrentThread.Name;
-            string message = $"WARNING [{name}]{msg}";
+            string message = $"WARNING [{name}] - {msg}";
             UnityEngine.Debug.LogWarning(message);
         }
 
         public void Error(string msg)
         {
             string name = Thread.CurrentThread.Name;
-            string message = $"ERROR [{name}]{msg}";
+            string message = $"ERROR [{name}] - {msg}";
             UnityEngine.Debug.LogError(message);
         }
 
@@ -49,35 +49,35 @@ namespace ET
         public void Trace(string message, params object[] args)
         {
             string name = Thread.CurrentThread.Name;
-            message = $"TRACE [{name}]{message}";
+            message = $"TRACE [{name}] - {message}";
             UnityEngine.Debug.LogFormat(message, args);
         }
 
         public void Warning(string message, params object[] args)
         {
             string name = Thread.CurrentThread.Name;
-            message = $"WARNING [{name}]{message}";
+            message = $"WARNING [{name}] - {message}";
             UnityEngine.Debug.LogWarningFormat(message, args);
         }
 
         public void Info(string message, params object[] args)
         {
             string name = Thread.CurrentThread.Name;
-            message = $"INFO [{name}]{message}";
+            message = $"INFO [{name}] - {message}";
             UnityEngine.Debug.LogFormat(message, args);
         }
 
         public void Debug(string message, params object[] args)
         {
             string name = Thread.CurrentThread.Name;
-            message = $"DEBUG [{name}]{message}";
+            message = $"DEBUG [{name}] - {message}";
             UnityEngine.Debug.LogFormat(message, args);
         }
 
         public void Error(string message, params object[] args)
         {
             string name = Thread.CurrentThread.Name;
-            message = $"ERROR [{name}]{message}";
+            message = $"ERROR [{name}] - {message}";
             UnityEngine.Debug.LogErrorFormat(message, args);
         }
     }
