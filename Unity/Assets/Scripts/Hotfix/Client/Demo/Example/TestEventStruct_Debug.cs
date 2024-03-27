@@ -6,7 +6,8 @@
         protected override async ETTask Run(Scene scene, TestEventStruct a)
         {
             await scene.GetComponent<TimerComponent>().WaitAsync(2000);
-            Log.Debug(a.TestValue.ToString());
+            Log.Debug($"value:{a.TestValue}");
+           
             await  ETTask.CompletedTask;
         }
     }

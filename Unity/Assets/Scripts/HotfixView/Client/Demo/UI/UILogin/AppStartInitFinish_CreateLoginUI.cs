@@ -7,6 +7,12 @@ namespace ET.Client
 	{
 		protected override async ETTask Run(Scene root, AppStartInitFinish args)
 		{
+			
+			Robot robot=root.GetComponent<RobotComponent>().AddChild<Robot>();
+			BrainComponent brainComponent=robot.AddComponent<BrainComponent>();
+			brainComponent.ChangeStatus(StatusEnum.Pending);
+			
+			
 			Phone phone=root.GetComponent<PhoneComponent>().AddChild<Phone>();
 			phone.AddComponent<DisplayComponent>();
 			phone.Open();

@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace ET
 {
-    // 一个Fiber一个固定的线程
+    // 一个Fiber一个固定的线程，主要是用来调试时候使用
     internal class ThreadScheduler: IScheduler
     {
         private readonly ConcurrentDictionary<int, Thread> dictionary = new();

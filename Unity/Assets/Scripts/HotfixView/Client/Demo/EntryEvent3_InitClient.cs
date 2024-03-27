@@ -17,11 +17,15 @@ namespace ET.Client
             root.AddComponent<CurrentScenesComponent>();
             root.AddComponent<ComputerComponent>();
             root.AddComponent<PhoneComponent>();
+            root.AddComponent<RobotComponent>();
             
             // 根据配置修改掉Main Fiber的SceneType
             SceneType sceneType = EnumHelper.FromString<SceneType>(globalComponent.GlobalConfig.AppType.ToString());
             root.SceneType = sceneType;
+            
             await EventSystem.Instance.PublishAsync(root, new AppStartInitFinish());
+            await EventSystem.Instance.PublishAsync(root, new TestEventStruct(){TestValue = 10});
+            Log.Debug("after TestEventStruct");
         }
     }
 }
