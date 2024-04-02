@@ -16,7 +16,10 @@ namespace ET.Client
 			Phone phone=root.GetComponent<PhoneComponent>().AddChild<Phone>();
 			phone.AddComponent<DisplayComponent>();
 			phone.Open();
-		
+
+			// //await TestAsync(root);
+			// TestAsync(root).Coroutine();
+			// await TestAsync2(root);
 			
 		//	phone.Open();
 		
@@ -26,7 +29,23 @@ namespace ET.Client
 			
 			await UIHelper.Create(root, UIType.UILogin, UILayer.Mid);
 		}
+		//
+		// public async ETTask TestAsync(Scene root)
+		// {
+		// 	Log.Debug("testAsync start");
+		// 	await root.GetComponent<TimerComponent>().WaitAsync(3000);
+		// 	Log.Debug("testAsync end");
+		//
+		// }
+		//
+		//
+		// public async ETTask<int> TestAsync2(Scene root)
+		// {
+		// 	Log.Debug("testAsync2 start");
+		// 	await root.GetComponent<TimerComponent>().WaitAsync(3000);
+		// 	Log.Debug("testAsync2 end");
+		// 	return 10;
+		// }
 
-		
 	}
 }
