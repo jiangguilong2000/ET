@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Threading;
+using UnityEditor.PackageManager;
 
 namespace ET
 {
@@ -7,38 +10,27 @@ namespace ET
     {
         public void Trace(string msg)
         {
-            string name = Thread.CurrentThread.Name;
-            string message = $"TRACE [{name}] - {msg}";
-            UnityEngine.Debug.Log(message);
+            UnityEngine.Debug.Log(GetMessage(msg, LogLevel.Verbose));
         }
 
         public void Debug(string msg)
         {
-            // int id=	Thread.CurrentThread.ManagedThreadId;
-            string name = Thread.CurrentThread.Name;
-            string message = $"DEBUG [{name}] - {msg}";
-            UnityEngine.Debug.Log(message);
+            UnityEngine.Debug.Log(GetMessage(msg, LogLevel.Debug));
         }
 
         public void Info(string msg)
         {
-            string name = Thread.CurrentThread.Name;
-            string message = $"INFO [{name}] - {msg}";
-            UnityEngine.Debug.Log(message);
+            UnityEngine.Debug.Log(GetMessage(msg, LogLevel.Info));
         }
 
         public void Warning(string msg)
         {
-            string name = Thread.CurrentThread.Name;
-            string message = $"WARNING [{name}] - {msg}";
-            UnityEngine.Debug.LogWarning(message);
+            UnityEngine.Debug.LogWarning(GetMessage(msg, LogLevel.Warn));
         }
 
         public void Error(string msg)
         {
-            string name = Thread.CurrentThread.Name;
-            string message = $"ERROR [{name}] - {msg}";
-            UnityEngine.Debug.LogError(message);
+            UnityEngine.Debug.LogError(GetMessage(msg, LogLevel.Error));
         }
 
         public void Error(Exception e)
@@ -48,37 +40,42 @@ namespace ET
 
         public void Trace(string message, params object[] args)
         {
-            string name = Thread.CurrentThread.Name;
-            message = $"TRACE [{name}] - {message}";
-            UnityEngine.Debug.LogFormat(message, args);
+            UnityEngine.Debug.LogFormat(GetMessage(message, LogLevel.Verbose), args);
         }
 
         public void Warning(string message, params object[] args)
         {
-            string name = Thread.CurrentThread.Name;
-            message = $"WARNING [{name}] - {message}";
-            UnityEngine.Debug.LogWarningFormat(message, args);
+            UnityEngine.Debug.LogWarningFormat(GetMessage(message, LogLevel.Warn), args);
         }
 
         public void Info(string message, params object[] args)
         {
-            string name = Thread.CurrentThread.Name;
-            message = $"INFO [{name}] - {message}";
-            UnityEngine.Debug.LogFormat(message, args);
+            UnityEngine.Debug.LogFormat(GetMessage(message, LogLevel.Info), args);
         }
 
         public void Debug(string message, params object[] args)
         {
-            string name = Thread.CurrentThread.Name;
-            message = $"DEBUG [{name}] - {message}";
-            UnityEngine.Debug.LogFormat(message, args);
+            UnityEngine.Debug.LogFormat(GetMessage(message, LogLevel.Debug), args);
         }
 
         public void Error(string message, params object[] args)
         {
-            string name = Thread.CurrentThread.Name;
-            message = $"ERROR [{name}] - {message}";
-            UnityEngine.Debug.LogErrorFormat(message, args);
+            UnityEngine.Debug.LogErrorFormat(GetMessage(message, LogLevel.Error), args);
+        }
+
+        private static string GetMessage(string msg, LogLevel level)
+        {
+            // #if !RELEASE  DEVELOP || UNITY_STANDALONE||DEVELOP
+#if UNITY_EDITOR
+            StackTrace stackTrace = new(true);
+            StackFrame frame = stackTrace.GetFrame(3); // 获取调用堆栈的第二层
+            string filePath = frame.GetFileName();
+            string className = Path.GetFileNameWithoutExtension(filePath); // 获取文件名（不包含扩展名）
+            int lineNumber = frame.GetFileLineNumber();
+            string threadName = Thread.CurrentThread.Name;
+            msg = $"{level.ToString()} [{threadName}][{className}:{lineNumber}] - {msg}";
+#endif
+            return msg;
         }
     }
 }
