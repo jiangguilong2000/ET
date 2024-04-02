@@ -77,8 +77,8 @@ namespace ET
             session.LastRecvTime = TimeInfo.Instance.ClientNow();
             
             (ActorId _, object message) = MessageSerializeHelper.ToMessage(self.AService, memoryBuffer);
-            
-            LogMsg.Instance.Debug(self.Fiber(), message);
+
+            LogMsg.Instance.Recv(self.Fiber(), message);
             EventSystem.Instance.Invoke((long)self.IScene.SceneType, new NetComponentOnRead() {Session = session, Message = message});
         }
         
