@@ -47,8 +47,8 @@ namespace ET
             self.LastSendTime = timeNow;
 
             self.requestCallbacks.Clear();
-            
-            Log.Info($"session create: zone: {self.Zone()} id: {self.Id} {timeNow} ");
+            string formattedDateTime = DateTimeOffset.FromUnixTimeMilliseconds(timeNow).ToOffset(TimeSpan.FromHours(8)).ToString("yyyy-MM-dd HH:mm:ss.fff");
+            Log.Info($"session create: zone: {self.Zone()} id: {self.Id} time:{formattedDateTime}");
         }
         
         [EntitySystem]
