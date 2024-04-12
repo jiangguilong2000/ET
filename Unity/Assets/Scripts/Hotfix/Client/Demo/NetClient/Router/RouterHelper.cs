@@ -16,7 +16,7 @@ namespace ET.Client
                 throw new Exception($"get router fail: {netComponent.Root().Id} {address}");
             }
             
-            Log.Info($"get router: recvLocalConn:{recvLocalConn} routerAddress:{routerAddress}");
+            Log.Info($"get random router: recvLocalConn:{recvLocalConn} routerAddress:{routerAddress}");
 //router连接可以重用
             Session routerSession = netComponent.Create(routerAddress, address, recvLocalConn);
             routerSession.AddComponent<PingComponent>();
